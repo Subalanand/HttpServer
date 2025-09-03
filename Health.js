@@ -24,6 +24,12 @@ res.json({
   numberofUnhealthyKidneys
 })
 })
+//go to postman and localhost:3002
+//select post method
+//go to body tab
+//select raw and json
+//in the text area write {"isHealthy":true} or false
+//it adds a new kidney to the kidneys array with the healthy status based on the isHealthy value from the request body
 
 app.post('/',function(req,res){
   const isHealthy=req.body.isHealthy;
@@ -32,14 +38,27 @@ app.post('/',function(req,res){
     message:"New Kidney Added"
   })
 })
-
+//go to postman and localhost:3002
+//select put method
+//go to body tab
+//select raw and json
+//in the text area write {}
+// all kidneys will become healthy
+//it makes all kidneys healthy by iterating through the kidneys array and setting healthy to true
+// if there are no kidneys it returns 411 status code with message
 app.put('/',function(req,res){
   for(let i=0;i<users[0].Kidneys.length;i++){
     users[0].Kidneys[i].healthy=true;
   }
   res.json({message:"All Kidneys are now healthy"})
 })
-
+//go to postman and localhost:3002
+//select delete method
+//go to body tab
+//select raw and json
+//in the text area write {}
+//it deletes all unhealthy kidneys by creating a new array with only healthy kidneys and replacing the old array
+// if there are no unhealthy kidneys it returns 411 status code with message
 app.delete('/',function(req,res){
   // only if atleast one unhealthy kidney is there do this, else return 411
   if(isAtleastOneUnhealthyKidney())
