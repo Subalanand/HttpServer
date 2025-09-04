@@ -16,6 +16,7 @@ Error Handling: Catching and processing errors.
 Parsing Request Bodies: Handling JSON or URL-encoded data (e.g., express.json(), express.urlencoded()).
 Serving Static Files: Providing access to static assets like images or CSS files (e.g., express.static()).
 */ 
+//Last thing in middleware-app.use(express.json()))
 const express=require('express');
 const app=express();
 app.use(express.json());

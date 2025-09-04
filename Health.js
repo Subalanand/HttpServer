@@ -30,7 +30,8 @@ res.json({
 //select raw and json
 //in the text area write {"isHealthy":true} or false
 //it adds a new kidney to the kidneys array with the healthy status based on the isHealthy value from the request body
-
+//app.use(express.json())) is used to parse the JSON body of the request
+//whenever you are calling post or put method you have to use app.use(express.json()))
 app.post('/',function(req,res){
   const isHealthy=req.body.isHealthy;
   users[0].Kidneys.push({healthy:isHealthy});
@@ -46,6 +47,7 @@ app.post('/',function(req,res){
 // all kidneys will become healthy
 //it makes all kidneys healthy by iterating through the kidneys array and setting healthy to true
 // if there are no kidneys it returns 411 status code with message
+//whenever you are calling post or put method you have to use app.use(express.json()))
 app.put('/',function(req,res){
   for(let i=0;i<users[0].Kidneys.length;i++){
     users[0].Kidneys[i].healthy=true;
