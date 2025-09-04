@@ -20,6 +20,12 @@ Serving Static Files: Providing access to static assets like images or CSS files
 const express=require('express');
 const app=express();
 app.use(express.json());
+//localhost:3002/health-check
+//go to header tab
+//add key as username and value as Subal
+//add key as password and value as Anand
+//if username or password is wrong it returns 403 status code with message
+//if both are correct it calls next() to pass control to the next middleware or route handler
 function UserMidelWare(req,res,next)
 {
   const username=req.headers.username;
@@ -35,7 +41,12 @@ function UserMidelWare(req,res,next)
       next();
     }
   }
-
+//localhost:3002/health-check?kidneyId=1
+//localhost:3002/health-check?kidneyId=2
+//localhost:3002/health-check?kidneyId=3
+//write query in postman
+//if kidneyId is not 1 or 2 it returns 403 status code with message
+//if kidneyId is 1 or 2 it calls next() to pass control to the next middleware or route handler
   function KidneyMiddleware(req,res,next)
 {
   const kidneyId=req.query.kidneyId;
@@ -50,16 +61,24 @@ function UserMidelWare(req,res,next)
       next();
     }
   }
+  //go to postman and select get and write localhost:3002/health-check?kidneyId=1 or 2
+  //it returns "Your Health is Good"
+ 
   app.get('/health-check',UserMidelWare,KidneyMiddleware,function(req,res){
     res.send(
       "Your Health is Good"
     )
   })
+  //go to postman and select get and write localhost:3002/kidney-check?kidneyId=1 or 2
+  //it returns "Your Kidney is Healthy"
+  
   app.get('kidney-check',UserMidelWare,KidneyMiddleware,function(req,res){
     res.send(
       "Your Kidney is Healthy"
     )
   })
+  //go to postman and select get and write localhost:3002/Insurance-check
+  //it returns "You have a valid Insurance"
   app.get('Insurance-check',UserMidelWare,function(req,res){
     res.send(
       "You have a valid Insurance"
